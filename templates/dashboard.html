@@ -1,0 +1,32 @@
+<!-- templates/dashboard.html -->
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Dashboard Admin</title>
+</head>
+<body>
+ <!-- templates/dashboard.html -->
+<h1>Dashboard Admin</h1>
+<p><a href="{{ url_for('logout') }}">🚪 Déconnexion</a></p>
+
+<p><a href="{{ url_for('add_article') }}">➕ Ajouter un article</a></p>
+
+{% if articles %}
+  <ul>
+    {% for article in articles %}
+      <li>
+        <strong>{{ article.title }}</strong> - {{ article.date }}
+        <a href="{{ url_for('edit_article', title=article.title) }}">Modifier</a>
+        <form action="{{ url_for('delete_article_route', title=article.title) }}" method="POST" style="display:inline;">
+          <button type="submit">Supprimer</button>
+        </form>
+      </li>
+    {% endfor %}
+  </ul>
+{% else %}
+  <p>Aucun article publié.</p>
+{% endif %}
+
+</body>
+</html>

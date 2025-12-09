@@ -1,0 +1,21 @@
+<!-- templates/edit_article.html -->
+<h1>Modifier un article</h1>
+
+{% if error %}
+  <p style="color:red;">{{ error }}</p>
+{% endif %}
+
+<form method="POST">
+  <label for="title">Titre :</label><br>
+  <input type="text" id="title" name="title" value="{{ article.title }}"><br><br>
+
+  <label for="content">Contenu :</label><br>
+  <textarea id="content" name="content" rows="5" cols="40">{{ article.content }}</textarea><br><br>
+
+  <label for="date">Date de publication :</label><br>
+  <input type="date" id="date" name="date" value="{{ article.date }}"><br><br>
+
+  <button type="submit">Mettre à jour</button>
+</form>
+
+<p><a href="{{ url_for('dashboard') }}">⬅ Retour au dashboard</a></p>
